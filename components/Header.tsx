@@ -31,37 +31,39 @@ const Header: React.FC<HeaderProps> = ({ isAdmin, onAdminToggle, cartCount, onCa
         </div>
       </div>
 
-      <nav className="hidden lg:flex items-center gap-8 font-semibold text-slate-600">
-        <button onClick={() => scrollTo('menu')} className="hover:text-[#E67E22] transition-colors">Order/Shop</button>
-        <button onClick={() => scrollTo('about')} className="hover:text-[#E67E22] transition-colors">About</button>
-        <button onClick={() => scrollTo('contact')} className="hover:text-[#E67E22] transition-colors">Contact Us</button>
-      </nav>
+      <div className="flex items-center gap-8 md:gap-10">
+        <nav className="hidden lg:flex items-center gap-8 font-bold text-sm uppercase tracking-widest text-slate-500">
+          <button onClick={() => scrollTo('menu')} className="hover:text-[#E67E22] transition-colors">Order/Shop</button>
+          <button onClick={() => scrollTo('about')} className="hover:text-[#E67E22] transition-colors">About</button>
+          <button onClick={() => scrollTo('contact')} className="hover:text-[#E67E22] transition-colors">Contact Us</button>
+        </nav>
 
-      <div className="flex items-center gap-3 md:gap-5">
-        <button 
-          onClick={onAdminToggle}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all border font-bold text-sm ${
-            isAdmin 
-              ? 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100' 
-              : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-          }`}
-        >
-          {isAdmin ? <LayoutDashboard size={16} /> : <LogIn size={16} />}
-          <span className="hidden sm:inline">{isAdmin ? 'Admin Panel' : 'Owner Login'}</span>
-        </button>
-
-        {!isAdmin && (
+        <div className="flex items-center gap-3 md:gap-5">
           <button 
-            onClick={onCartClick}
-            className="relative bg-[#E67E22] hover:bg-[#D35400] text-white p-2.5 rounded-xl transition-all active:scale-95 shadow-lg shadow-orange-100 flex items-center gap-2"
+            onClick={onAdminToggle}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all border font-bold text-sm ${
+              isAdmin 
+                ? 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100' 
+                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+            }`}
           >
-            <ShoppingBasket size={20} />
-            <span className="font-bold pr-1">{cartCount}</span>
-            <div className="absolute -top-1 -right-1 bg-[#3E2723] text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full border-2 border-white font-black animate-pulse">
-              {cartCount > 0 ? '!' : '0'}
-            </div>
+            {isAdmin ? <LayoutDashboard size={16} /> : <LogIn size={16} />}
+            <span className="hidden sm:inline">{isAdmin ? 'Admin Panel' : 'Owner Login'}</span>
           </button>
-        )}
+
+          {!isAdmin && (
+            <button 
+              onClick={onCartClick}
+              className="relative bg-[#E67E22] hover:bg-[#D35400] text-white p-2.5 rounded-xl transition-all active:scale-95 shadow-lg shadow-orange-100 flex items-center gap-2"
+            >
+              <ShoppingBasket size={20} />
+              <span className="font-bold pr-1">{cartCount}</span>
+              <div className="absolute -top-1 -right-1 bg-[#3E2723] text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full border-2 border-white font-black animate-pulse">
+                {cartCount > 0 ? '!' : '0'}
+              </div>
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );
